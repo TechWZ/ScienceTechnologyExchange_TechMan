@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>科技交流</title>
+    <link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" />
+    <script type="text/javascript" src="jQuery/jquery-3.3.1.js"></script>
+    <script>
+      $(function() {
+        $("#navPart").load("nav.html");
+        $("#submitButton").click(function() {
+          var parameterData = new FormData();
+          parameterData.append(
+            "videoFile",
+            document.getElementById("videoFile").files[0]
+          );
+          $.ajax({
+            type: "post",
+            url: "http://127.0.0.1:8080/STE/uploadVideo",
+            processData: false, //不处理发送的数据
+            contentType: false, //不设置Content-Type请求头
+            data: parameterData,
+            success: function(data) {
+              alert(data);
+            },
+            error: function(data) {
+              alert(data);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Content here -->
+      <div class="row" id="navPart"><!-- 导航栏部分 --></div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-7 mt-5">
+          <form>
+            <div class="form-group row">
+              <label for="videoTitle" class="col-md-3 col-form-label"
+                >视频标题</label
+              >
+              <input
+                type="text"
+                class="form-control col-md-5"
+                id="videoTitle"
+              />
+            </div>
+            <div class="form-group row mt-4">
+              <label for="levelOne levelTwo" class="col-md-3 col-form-label"
+                >类型</label
+              >
+              <select class="form-control col-md-3" id="levelOne">
+                <option>请选择一级分类</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group row mt-4">
+              <select class="form-control col-md-3 offset-md-3" id="levelTwo">
+                <option>请选择二级分类</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group row mt-4">
+              <label for="levelOne levelTwo" class="col-md-3 col-form-label"
+                >所属栏目</label
+              >
+              <select class="form-control col-md-3" id="levelOne">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <button type="button" class="btn btn-info offset-md-1">
+                创建栏目
+              </button>
+            </div>
+            <div class="form-group row mt-4">
+              <label for="formControlFile1" class="col-md-3 col-form-label"
+                >上传视频</label
+              >
+              <input
+                type="file"
+                class="form-control-file col-md-5"
+                id="videoFile"
+                style="padding-left:0%"
+              />
+            </div>
+            <div class="form-group row mt-4">
+              <label for="approvalOpinion" class="col-md-3 col-form-label"
+                >面向审批人备注</label
+              >
+              <textarea
+                class="form-control col-md-5"
+                rows="5"
+                id="approvalOpinion"
+              ></textarea>
+            </div>
+
+            <button
+              id="submitButton"
+              type="button"
+              class="btn btn-primary offset-md-3 mt-5"
+            >
+              确认发布
+            </button>
+          </form>
+        </div>
+        <div class="col-md-3" style="background-color:#000000"><h3 class="text-white">个人信息板块</h3><br/><h3 class="text-white">待开发</h3></div>
+      </div>
+    </div>
+
+    <script src="bootstrap-4/js/popper.js_1.12.9_umd/popper.min.js"></script>
+    <script src="bootstrap-4/js/bootstrap.min.js"></script>
+  </body>
+</html>
