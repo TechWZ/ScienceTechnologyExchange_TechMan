@@ -1,0 +1,16 @@
+{
+  "name": "sciencetechnologyexchange_nginx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "handlebars": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "handlebarsVersion":"handlebars -v"
+  },
+  "author": "",
+  "license": "ISC"
+}

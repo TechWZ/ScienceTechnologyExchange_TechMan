@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>科技交流</title>
+  <!-- <link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" /> -->
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="../jQuery/jquery-3.3.1.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/handlebars.js/4.1.0/handlebars.js"></script> -->
+  <script src="https://cdn.bootcss.com/handlebars.js/4.1.0/handlebars.runtime.js"></script>
+  <script src="../handlebarsTemplateFile/leftNav_m_index.hbs.js"></script>
+  <script>
+    $(function () {
+      $("#navPart").load("m_nav.html");
+      $("#breadcrumb-content").load("m_breadcrumb.html");
+      $.ajax({
+        type: "get",
+        url: "http://127.0.0.1:8080/STE/managementNavigation",
+        success: function (result) {
+          let dataHtml = Handlebars.templates.leftNav_m_index(result);
+          $("#accordion").append(dataHtml);
+        }
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid" style="background-color: #000000;">
+    <!-- Content here -->
+    <div class="row" id="navPart">
+      <!-- 导航栏部分 -->
+    </div>
+    <div class="row">
+      <div class="col-2" style="background-color:#ffffff">
+        <div id="accordion">
+          <!-- 左侧导航栏部分 -->
+        </div>
+      </div>
+      <div class="col-10" style="background-color:#548f80">
+        <div class="row" id="breadcrumb-content">
+          <!-- breadcrumb导航 -->
+        </div>
+          <div class="tab-content" id="v-pills-tabContent">
+              <!-- 主要操作部分 -->
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="d1">
+  </div>
+  </div>
+
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <!-- <script src="bootstrap-4/js/popper.js_1.12.9_umd/popper.min.js"></script>
+  <script src="bootstrap-4/js/bootstrap.min.js"></script> -->
+
+</body>
+
+</html>
