@@ -47,7 +47,9 @@ templates['leftNav_m_index'] = template({"1":function(container,depth0,helpers,p
 
   return "                <a class=\"nav-link active\" id=\""
     + alias4(((helper = (helper = helpers.mCategoryId || (depth0 != null ? depth0.mCategoryId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"mCategoryId","hash":{},"data":data}) : helper)))
-    + "\" data-toggle=\"pill\" href=\"#\" role=\"tab\"\n                    aria-selected=\"true\">"
+    + "\" data-toggle=\"pill\" href=\"#\" role=\"tab\"\n                    aria-selected=\"true\" onclick=\"managementHandleView('"
+    + alias4(((helper = (helper = helpers.levelTwoName || (depth0 != null ? depth0.levelTwoName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"levelTwoName","hash":{},"data":data}) : helper)))
+    + "')\">"
     + alias4(((helper = (helper = helpers.levelTwoName || (depth0 != null ? depth0.levelTwoName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"levelTwoName","hash":{},"data":data}) : helper)))
     + "</a>\n";
 },"11":function(container,depth0,helpers,partials,data) {
@@ -55,12 +57,15 @@ templates['leftNav_m_index'] = template({"1":function(container,depth0,helpers,p
 
   return "                <a class=\"nav-link\" id=\""
     + alias4(((helper = (helper = helpers.mCategoryId || (depth0 != null ? depth0.mCategoryId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"mCategoryId","hash":{},"data":data}) : helper)))
-    + "\" data-toggle=\"pill\" href=\"#\" role=\"tab\"\n                    aria-selected=\"false\">"
+    + "\" data-toggle=\"pill\" href=\"#\" role=\"tab\"\n                    aria-selected=\"false\" onclick=\"managementHandleView('"
+    + alias4(((helper = (helper = helpers.levelTwoName || (depth0 != null ? depth0.levelTwoName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"levelTwoName","hash":{},"data":data}) : helper)))
+    + "')\">"
     + alias4(((helper = (helper = helpers.levelTwoName || (depth0 != null ? depth0.levelTwoName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"levelTwoName","hash":{},"data":data}) : helper)))
     + "</a>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n<script>\n    $.getScript(\"../handlebarsTemplateFile/compiledFile/systemCategory_m_index.hbs.js\");\n    function managementHandleView(levelTwoName) {\n        switch(levelTwoName){\n            case \"管理系统分类\":\n                let dataHtml = Handlebars.templates.systemCategory_m_index(systemCategoryData);\n                $(\"#v-pills-tabContent\").html(dataHtml);\n                break;\n        }\n    }\n</script>";
 },"useData":true});
 })();

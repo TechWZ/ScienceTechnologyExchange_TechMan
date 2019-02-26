@@ -17,7 +17,7 @@
           var parameterData = new FormData();
           parameterData.append(
             "videoFile",
-            document.getElementById("videoFile").files[0]
+            $("#videoFile").files[0]
           );
           $.ajax({
             type: "post",

@@ -8,25 +8,32 @@
   <title>科技交流</title>
   <!-- <link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" /> -->
   <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><!--font awesome框架引用-->
 
   <script type="text/javascript" src="../jQuery/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="../jQuery/util.js"></script>
   <!-- <script src="https://cdn.bootcss.com/handlebars.js/4.1.0/handlebars.js"></script> -->
   <script src="https://cdn.bootcss.com/handlebars.js/4.1.0/handlebars.runtime.js"></script>
-  <script src="../handlebarsTemplateFile/leftNav_m_index.hbs.js"></script>
   <script>
+    var systemCategoryData;
     $(function () {
       $("#navPart").load("m_nav.html");
       $("#breadcrumb-content").load("m_breadcrumb.html");
+      $.getScript("../handlebarsTemplateFile/compiledFile/leftNav_m_index.hbs.js");
       $.ajax({
         type: "get",
         url: "http://127.0.0.1:8080/STE/managementNavigation",
         success: function (result) {
           let dataHtml = Handlebars.templates.leftNav_m_index(result);
           $("#accordion").append(dataHtml);
+          systemCategoryData = {
+            "managementNavigation":result
+          };
         }
-      })
+      });
     })
   </script>
+  
 </head>
 
 <body>
@@ -41,7 +48,7 @@
           <!-- 左侧导航栏部分 -->
         </div>
       </div>
-      <div class="col-10" style="background-color:#548f80">
+      <div class="col-10" style="background-color:#ffffff">
         <div class="row" id="breadcrumb-content">
           <!-- breadcrumb导航 -->
         </div>

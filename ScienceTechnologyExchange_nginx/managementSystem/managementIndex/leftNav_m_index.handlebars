@@ -1,3 +1,15 @@
+<script>
+    $.getScript("../handlebarsTemplateFile/compiledFile/systemCategory_m_index.hbs.js");
+    function managementHandleView(levelTwoName) {
+        switch(levelTwoName){
+            case "管理系统分类":
+                let dataHtml = Handlebars.templates.systemCategory_m_index(systemCategoryData);
+                $("#v-pills-tabContent").html(dataHtml);
+                break;
+        }
+    }
+</script>
+
 {{#each this}}
 <div class="card">
     <div class="card-header" id="heading{{@index}}">
@@ -23,10 +35,10 @@
                 {{#each mCLTwo}}
                 {{#if @first}}
                 <a class="nav-link active" id="{{mCategoryId}}" data-toggle="pill" href="#" role="tab"
-                    aria-selected="true">{{levelTwoName}}</a>
+                    aria-selected="true" onclick="managementHandleView('{{levelTwoName}}')">{{levelTwoName}}</a>
                 {{else}}
                 <a class="nav-link" id="{{mCategoryId}}" data-toggle="pill" href="#" role="tab"
-                    aria-selected="false">{{levelTwoName}}</a>
+                    aria-selected="false" onclick="managementHandleView('{{levelTwoName}}')">{{levelTwoName}}</a>
                 {{/ if}}
                 {{/ each}}
             </div>
