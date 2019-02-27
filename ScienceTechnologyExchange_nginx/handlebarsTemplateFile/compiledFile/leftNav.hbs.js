@@ -1,6 +1,6 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['leftNav_m_index'] = template({"1":function(container,depth0,helpers,partials,data) {
+templates['leftNav'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<div class=\"card\">\n    <div class=\"card-header\" id=\"heading"
@@ -65,7 +65,7 @@ templates['leftNav_m_index'] = template({"1":function(container,depth0,helpers,p
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n<script>\n    $.getScript(\"../handlebarsTemplateFile/compiledFile/systemCategory_m_index.hbs.js\");\n    function managementHandleView(levelTwoName) {\n        switch(levelTwoName){\n            case \"管理系统分类\":\n                let dataHtml = Handlebars.templates.systemCategory_m_index(systemCategoryData);\n                $(\"#v-pills-tabContent\").html(dataHtml);\n                break;\n        }\n    }\n</script>";
+  return "<script>\n    $.getScript(\"../../handlebarsTemplateFile/compiledFile/systemCategory.hbs.js\");\n    function managementHandleView(levelTwoName) {\n        switch(levelTwoName){\n            case \"管理系统分类\":\n                let dataHtml = Handlebars.templates.systemCategory(systemCategoryData);\n                $(\"#v-pills-tabContent\").html(dataHtml);\n                break;\n        }\n    }\n</script>\n\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 })();

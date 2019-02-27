@@ -1,9 +1,9 @@
 <script>
-    $.getScript("../handlebarsTemplateFile/compiledFile/systemCategory_m_index.hbs.js");
+    $.getScript("../../handlebarsTemplateFile/compiledFile/systemCategory.hbs.js");
     function managementHandleView(levelTwoName) {
         switch(levelTwoName){
             case "管理系统分类":
-                let dataHtml = Handlebars.templates.systemCategory_m_index(systemCategoryData);
+                let dataHtml = Handlebars.templates.systemCategory(systemCategoryData);
                 $("#v-pills-tabContent").html(dataHtml);
                 break;
         }
