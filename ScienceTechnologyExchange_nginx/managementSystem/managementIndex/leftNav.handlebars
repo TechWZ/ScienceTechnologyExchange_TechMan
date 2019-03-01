@@ -1,10 +1,24 @@
 <script>
-    $.getScript("../../handlebarsTemplateFile/compiledFile/systemCategory.hbs.js");
-    function managementHandleView(levelTwoName) {
-        switch(levelTwoName){
-            case "管理系统分类":
-                let dataHtml = Handlebars.templates.systemCategory(systemCategoryData);
+
+    function manageHandleView(mCategoryId_levelTwo) {
+        switch (mCategoryId_levelTwo) {
+            case "381cfdd1-3c14-413d-b83a-df2cf8ad56e3"://管理系统分类
+                $.getScript("../../handlebarsTemplateFile/compiledFile/managementCategory.hbs.js");
+                let dataHtml = Handlebars.templates.managementCategory(managementCategoryData);
                 $("#v-pills-tabContent").html(dataHtml);
+                break;
+            case "a442c735-4a4d-4ffd-a0dc-a8404dfcbe9b"://用户系统分类
+                $.getScript("../../handlebarsTemplateFile/compiledFile/userCategory.hbs.js");
+                $.ajax({
+                    type: "get",
+                    url: "http://127.0.0.1:8080/STE/userCategory",
+                    success: function (result) {
+                        let userCategoryData = new Object;
+                        userCategoryData.userCategoryData = result;
+                        let dataHtml = Handlebars.templates.userCategory(userCategoryData);
+                        $("#v-pills-tabContent").html(dataHtml);
+                    }
+                });
                 break;
         }
     }
@@ -35,10 +49,10 @@
                 {{#each mCLTwo}}
                 {{#if @first}}
                 <a class="nav-link active" id="{{mCategoryId}}" data-toggle="pill" href="#" role="tab"
-                    aria-selected="true" onclick="managementHandleView('{{levelTwoName}}')">{{levelTwoName}}</a>
+                    aria-selected="true" onclick="manageHandleView('{{mCategoryId}}')">{{levelTwoName}}</a>
                 {{else}}
-                <a class="nav-link" id="{{mCategoryId}}" data-toggle="pill" href="#" role="tab"
-                    aria-selected="false" onclick="managementHandleView('{{levelTwoName}}')">{{levelTwoName}}</a>
+                <a class="nav-link" id="{{mCategoryId}}" data-toggle="pill" href="#" role="tab" aria-selected="false"
+                    onclick="manageHandleView('{{mCategoryId}}')">{{levelTwoName}}</a>
                 {{/ if}}
                 {{/ each}}
             </div>

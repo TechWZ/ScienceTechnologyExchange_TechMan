@@ -1,0 +1,129 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{#if uCategoryId}}编辑{{else}}添加{{/ if}}系统分类</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="userCategoryForm">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">一级系统分类</label>
+                    {{#if uCategoryId}}
+                    <input type="hidden" name="uCategoryId" value="{{uCategoryId}}">
+                    {{/ if}}
+                    <input type="text" class="form-control" placeholder="一级系统分类" name="uLevelOneName"
+                        value="{{uLevelOneName}}">
+                </div>
+                <div class="form-group" id="levelTwo_formGroup">
+                    <div class="row">
+                        <div class="col-6"><label>二级系统分类</label></div>
+                        {{!-- <div class="col-6 text-right">
+                            <button class="btn btn-outline-success" onclick="addLevelTwoInput()" type="button">
+                                <i class="fa fa-plus-circle"></i>
+                            </button>
+                        </div> --}}
+                    </div>
+                    {{#unless uCategoryId}}
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" class="form-control" placeholder="二级系统分类" name="levelTwoNameList">
+                        </div>
+                        <div class="col-2 text-right">
+
+                        </div>
+                    </div>
+                    {{else}}
+                    {{#each mCLTwo}}
+
+                    <div class="row" id="'row" + Date.now()+"'">
+                        <div class="col-10">
+                            {{#if uCategoryId}}
+                            <input type="hidden" name="levelTwoList" value="{{this.uCategoryId}}">
+                            {{/ if}}
+                            <input type="text" class="form-control" name="levelTwoList" value="{{uLevelTwoName}}">
+                        </div>
+                        {{!-- <div class="col-2 text-right">
+                            <button type="button" class="btn btn-outline-danger" onclick="subLevelTwoInput('row" +
+                                Date.now() + "')">
+                                <i class='fa fa-minus-circle'></i>
+                            </button>
+                        </div> --}}
+                    </div>
+
+                    {{/ each}}
+                    {{/ unless}}
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+            {{#unless uCategoryId}}
+            <button type="button" class="btn btn-outline-success" onclick="confirmAdd()">确认添加</button>
+            {{else}}
+            <button type="button" class="btn btn-outline-success" onclick="confirmEdit()">确认修改</button>
+            {{/ unless}}
+        </div>
+    </div>
+</div>
+<script>
+    {{!-- function confirmAdd() {
+        let parameter = $("#systemCategoryForm").serializeObject();
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(parameter),
+            url: "http://127.0.0.1:8080/STE/addManagementCategory",
+            success: function (result) {
+                $("button[data-dismiss=modal]").trigger("click");
+                alert("添加成功");
+            }
+        });
+    } --}}
+
+    function confirmEdit() {
+        let parameter = $("#userCategoryForm").serializeObject();
+        let array = new Array;
+        let obj;
+        parameter.levelTwoList.forEach(function (value, index) {
+            if ((index + 1) % 2) {
+                obj = new Object;
+                obj.uCategoryId = value;
+            } else {
+                obj.uLevelTwoName = value;
+                array.push(obj);
+            }
+        });
+        parameter.levelTwoList = array;
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(parameter),
+            url: "http://127.0.0.1:8080/STE/editUserCategory",
+            success: function () {
+                $('#userCategoryModal').modal('hide');
+                alert("修改成功");
+                init();
+            }
+        });
+    }
+
+    {{!-- function addLevelTwoInput() {
+        let dynamicHtml =
+            "<div class='row' id='row" + Date.now() + "'>" +
+            "<div class='col-10'>" +
+            "<input type='text' class='form-control' placeholder='二级系统分类' name='levelTwoNameList'>" +
+            "</div>" +
+            "<div class='col-2 text-right'>" +
+            "<button type='button' class='btn btn-outline-danger' onclick=\"subLevelTwoInput('row" + Date.now() + "')\">" +
+            "<i class='fa fa-minus-circle'></i>" +
+            "</button>" +
+            "</div>" +
+            "</div>";
+
+        $("#levelTwo_formGroup").append(dynamicHtml);
+    } --}}
+</script>

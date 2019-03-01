@@ -15,8 +15,8 @@
   <!-- <script src="https://cdn.bootcss.com/handlebars.js/4.1.0/handlebars.js"></script> -->
   <script src="https://cdn.bootcss.com/handlebars.js/4.1.0/handlebars.runtime.js"></script>
   <script>
-    var systemCategoryData;
-    $(function () {
+    var managementCategoryData;
+    function init() {
       $("#navPart").load("nav.html");
       $("#breadcrumb-content").load("breadcrumb.html");
       $.getScript("../../handlebarsTemplateFile/compiledFile/leftNav.hbs.js");
@@ -26,12 +26,13 @@
         success: function (result) {
           let dataHtml = Handlebars.templates.leftNav(result);
           $("#accordion").append(dataHtml);
-          systemCategoryData = {
-            "managementNavigation":result
+          managementCategoryData = {
+            "managementCategoryData":result
           };
         }
       });
-    })
+    }
+    init();
   </script>
   
 </head>

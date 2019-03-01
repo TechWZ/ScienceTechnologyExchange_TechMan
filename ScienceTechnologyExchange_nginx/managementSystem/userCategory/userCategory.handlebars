@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-12">
+        {{!-- <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-outline-success" onclick="addMSCModal()"><i
+                        class="fa fa-plus"></i></button>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+            </div> 
+        </div> --}}
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">序号</th>
+                    <th scope="col">一级分类名称</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if userCategoryData}}
+                {{#each userCategoryData}}
+                <tr>
+                    <th scope="row">{{@index}}</th>
+                    <td>{{uLevelOneName}}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning"
+                            onclick="editUserCategory('{{uCategoryId}}')"><i
+                                class="fa fa-wrench"></i></button>
+                    </td>
+                </tr>
+                {{/each}}
+                {{/ if}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="userCategoryModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+
+<script>
+    {{!-- function subLevelTwoInput(divId) {
+        $("#" + divId).remove();
+    } --}}
+
+    $.getScript("../../handlebarsTemplateFile/compiledFile/uSCModal.hbs.js");//引入modal
+    function editUserCategory(uCategoryId) {
+        $.ajax({
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            data: {
+                "id": uCategoryId
+            },
+            url: "http://127.0.0.1:8080/STE/getUserCategoryById",
+            success: function (result) {
+                let dataHtml = Handlebars.templates.uSCModal(result);
+                $("#userCategoryModal").html(dataHtml);
+                $("#userCategoryModal").modal('show');
+            }
+        });
+    }
+    {{!-- function addMSCModal() {
+        let dataHtml = Handlebars.templates.mSCModal();
+        $("#managementSystemCategoryModal").html(dataHtml);
+        $("#managementSystemCategoryModal").modal('show');
+    } --}}
+</script>
