@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <div class="row">
+        {{!-- <div class="row">
             <div class="col-6">
                 <button type="button" class="btn btn-outline-success" onclick="addMSCModal()"><i
                         class="fa fa-plus"></i></button>
@@ -8,7 +8,7 @@
             <div class="col-6 text-right">
                 <button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
             </div>
-        </div>
+        </div> --}}
 
         <table class="table table-bordered">
             <thead>
@@ -19,8 +19,8 @@
                 </tr>
             </thead>
             <tbody>
-                {{#if managementCateogryData}}
-                {{#each managementCateogryData}}
+                {{#if managementCategoryData}}
+                {{#each managementCategoryData}}
                 <tr>
                     <th scope="row">{{@index}}</th>
                     <td>{{mLevelOneName}}</td>
@@ -42,7 +42,7 @@
 </div>
 
 <script>
-    function addLevelTwoInput() {
+    {{!-- function addLevelTwoInput() {
         let dynamicHtml =
             "<div class='row' id='row" + Date.now() + "'>" +
             "<div class='col-10'>" +
@@ -51,12 +51,12 @@
             "<div class='col-2 text-right'>" +
             "<button type='button' class='btn btn-outline-danger' onclick=\"subLevelTwoInput('row" + Date.now() + "')\">" +
             "<i class='fa fa-minus-circle'></i>" +
-            "</button>" +
+            "</button>" + 
             "</div>" +
             "</div>";
 
         $("#levelTwo_formGroup").append(dynamicHtml);
-    }
+    } --}}
     function subLevelTwoInput(divId) {
         $("#" + divId).remove();
     }
@@ -83,4 +83,5 @@
         $("#managementSystemCategoryModal").html(dataHtml);
         $("#managementSystemCategoryModal").modal('show');
     }
+    {{!-- window.aaa = 1; --}}
 </script>

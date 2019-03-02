@@ -1,22 +1,25 @@
 <script>
-
     function manageHandleView(mCategoryId_levelTwo) {
+        console.log(mCategoryId_levelTwo);
         switch (mCategoryId_levelTwo) {
             case "381cfdd1-3c14-413d-b83a-df2cf8ad56e3"://管理系统分类
-                $.getScript("../../handlebarsTemplateFile/compiledFile/managementCategory.hbs.js");
-                let dataHtml = Handlebars.templates.managementCategory(managementCategoryData);
-                $("#v-pills-tabContent").html(dataHtml);
+                $.getScript('/handlebarsTemplateFile/compiledFile/managementCategory.hbs.js').then(() => {
+                    let dataHtml = Handlebars.templates.managementCategory(managementCategoryData);
+                    $("#v-pills-tabContent").html(dataHtml);
+                });
+
                 break;
             case "a442c735-4a4d-4ffd-a0dc-a8404dfcbe9b"://用户系统分类
-                $.getScript("../../handlebarsTemplateFile/compiledFile/userCategory.hbs.js");
                 $.ajax({
                     type: "get",
-                    url: "http://127.0.0.1:8080/STE/userCategory",
+                    url: "http://127.0.0.1:8080/STE/getUserCategory",
                     success: function (result) {
                         let userCategoryData = new Object;
                         userCategoryData.userCategoryData = result;
-                        let dataHtml = Handlebars.templates.userCategory(userCategoryData);
-                        $("#v-pills-tabContent").html(dataHtml);
+                        $.getScript('/handlebarsTemplateFile/compiledFile/userCategory.hbs.js').then(() => {
+                            let dataHtml = Handlebars.templates.userCategory(userCategoryData);
+                            $("#v-pills-tabContent").html(dataHtml);
+                        });
                     }
                 });
                 break;
