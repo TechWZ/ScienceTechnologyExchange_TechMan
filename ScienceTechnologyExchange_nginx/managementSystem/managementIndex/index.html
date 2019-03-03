@@ -27,8 +27,6 @@
           let dataHtml = Handlebars.templates.leftNav(result);
           $("#accordion").append(dataHtml);
           managementCategoryData.managementCategoryData = result;
-          console.log(result);
-          console.log(result[0].mCategoryId);
           manageHandleView(result[0].mCLTwo[0].mCategoryId);
         }
       });

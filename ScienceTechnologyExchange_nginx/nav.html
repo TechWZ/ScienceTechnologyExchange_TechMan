@@ -21,7 +21,7 @@
               >科技生活 <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -34,7 +34,7 @@
               学习社区
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item active" href="#">课程首页</a>
+              <a class="dropdown-item active" href="#" onclick="courseIndex()">课程首页</a>
               <a class="dropdown-item" href="#">个人学习</a>
               <!--
                 <div class="dropdown-divider"></div>
@@ -59,3 +59,8 @@
     </div>
   </nav>
 </div>
+<script>
+  function courseIndex(){
+    $("#mainDiv").load("/userSystem/learningCommunity/index.html");
+  }
+</script>

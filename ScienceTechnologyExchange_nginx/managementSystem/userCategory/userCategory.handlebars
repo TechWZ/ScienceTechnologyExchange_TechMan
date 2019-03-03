@@ -26,8 +26,7 @@
                     <td>{{uLevelOneName}}</td>
                     <td>
                         <button type="button" class="btn btn-outline-warning"
-                            onclick="editUserCategory('{{uCategoryId}}')"><i
-                                class="fa fa-wrench"></i></button>
+                            onclick="editUserCategory('{{uCategoryId}}')"><i class="fa fa-wrench"></i></button>
                     </td>
                 </tr>
                 {{/each}}
@@ -37,35 +36,41 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="userCategoryModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="userCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
 </div>
 
 <script>
-    {{!-- function subLevelTwoInput(divId) {
-        $("#" + divId).remove();
-    } --}}
+    /*
+    function subLevelTwoInput(divId) {
+       $("#" + divId).remove();
+    }
+    */
 
-    $.getScript("../../handlebarsTemplateFile/compiledFile/uSCModal.hbs.js");//引入modal
     function editUserCategory(uCategoryId) {
+        console.log("1")
         $.ajax({
             type: "get",
             contentType: "application/json",
             dataType: "json",
             data: {
-                "id": uCategoryId
+                "uCategoryId": uCategoryId
             },
             url: "http://127.0.0.1:8080/STE/getUserCategoryById",
             success: function (result) {
-                let dataHtml = Handlebars.templates.uSCModal(result);
-                $("#userCategoryModal").html(dataHtml);
-                $("#userCategoryModal").modal('show');
+                $.getScript("../../handlebarsTemplateFile/compiledFile/uSCModal.hbs.js").then(() => {
+                    let dataHtml = Handlebars.templates.uSCModal(result);
+                    $("#userCategoryModal").html(dataHtml);
+                    $("#userCategoryModal").modal('show');
+                });
             }
         });
     }
-    {{!-- function addMSCModal() {
-        let dataHtml = Handlebars.templates.mSCModal();
-        $("#managementSystemCategoryModal").html(dataHtml);
-        $("#managementSystemCategoryModal").modal('show');
-    } --}}
+    /*
+    function addMSCModal() {
+                let dataHtml = Handlebars.templates.mSCModal();
+                $("#managementSystemCategoryModal").html(dataHtml);
+                $("#managementSystemCategoryModal").modal('show');
+    } 
+    */
 </script>
