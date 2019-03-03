@@ -22,9 +22,9 @@
                 $.getScript(
                     "/handlebarsTemplateFile/compiledFile/userSystem/leftNav_userCategory.hbs.js"
                 ).then(() => {
-                    let dataHtml = Handlebars.templates.leftNav_userCategory(
-                        userCategoryData);
+                    let dataHtml = Handlebars.templates.leftNav_userCategory(userCategoryData);
                     $("#accordion").html(dataHtml);
+                    courseView(result[0].uCLTwo[0].uCategoryId);
                 });
             }
         });
