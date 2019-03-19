@@ -1,87 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>科技交流</title>
-    <link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" />
-    <script type="text/javascript" src="jQuery/jquery-3.3.1.js"></script>
-    <script>
-      $(function() {
-        $("#loginButton").click(function() {
-          var parameterData = {
-            account: $("#account").val(),
-            password: $("#password").val()
-          };
-          $.ajax({
-            type: "post",
-            url: "http://127.0.0.1:8080/STE/userLogin",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(parameterData),
-            success: function(data) {
-              if(data == 1){
-                window.location.href="http://127.0.0.1:8082/index.html";
-              }else{
-                alert("账号或密码错误")
-              }
-            },
-            error: function() {
-              alert("请求失败");
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>科技交流</title>
+  <link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" />
+  <script type="text/javascript" src="jQuery/jquery-3.3.1.js"></script>
+  <script>
+    $(function(){
+      $("#loginButton").click(function() {
+        let parameterData = new Object;
+        parameterData.account = $("#account").val();
+        parameterData.password = $("#password").val();
+
+        $.ajax({
+          xhrFields: { withCredentials: true },
+          contentType: "application/json",
+          type: "post",
+          url:"http://127.0.0.1:8080/STE/userLogin",
+          data: JSON.stringify(parameterData),
+          success: function(data) {
+            if(data){
+              window.location.href="http://127.0.0.1:8082/userSystem/index.html";
+            }else{
+              alert("账号或密码错误")
             }
-          });
+          }
         });
       });
-    </script>
-  </head>
-  <body style="background-color:#000000">
-    <div class="container-fluid">
-      <!-- Content here -->
-      <div class="row justify-content-center" style="margin-top:12%">
-        <div class="col-md-7">
-          <center>
+    });
+  </script>
+</head>
+
+<body style="background-color:#000000">
+  <div class="container-fluid">
+    <!-- Content here -->
+    <div class="row justify-content-center" style="margin-top:12%">
+      <div class="col-md-7">
+        <center>
           <h1 class="text-white" style="font-weight:lighter">科&nbsp;&nbsp;&nbsp;&nbsp;技&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;流</h1>
           <h3 class="text-white" style="font-weight:lighter">Scientific and Technological Exchanges</h3>
           <form style="margin-top:10%">
             <div class="form-group row justify-content-center">
-              <input
-                type="text"
-                class="form-control col-md-5"
-                id="account"
-                placeholder="请输入账号"
-              />
+              <input type="text" class="form-control col-md-5" id="account" placeholder="请输入账号" />
             </div>
-            <div
-              class="form-group row justify-content-center"
-              style="margin-top:5%"
-            >
-              <input
-                type="password"
-                class="form-control col-md-5"
-                id="password"
-                placeholder="请输入密码"
-              />
+            <div class="form-group row justify-content-center" style="margin-top:5%">
+              <input type="password" class="form-control col-md-5" id="password" placeholder="请输入密码" value="superman" />
             </div>
             <div class="row justify-content-center" style="margin-top:10%">
               <button type="button" class="btn btn-outline-danger">注册</button>
-              <button
-                type="button"
-                class="btn btn-danger offset-md-1"
-                id="loginButton"
-              >
+              <button type="button" class="btn btn-danger offset-md-1" id="loginButton">
                 登录
               </button>
             </div>
           </form>
         </center>
-        </div>
       </div>
     </div>
+  </div>
 
-    <script src="bootstrap-4/js/popper.js_1.12.9_umd/popper.min.js"></script>
-    <script src="bootstrap-4/js/bootstrap.min.js"></script>
-  </body>
+  <script src="bootstrap-4/js/popper.js_1.12.9_umd/popper.min.js"></script>
+  <script src="bootstrap-4/js/bootstrap.min.js"></script>
+</body>
+
 </html>

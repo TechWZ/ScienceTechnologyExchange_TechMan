@@ -1,5 +1,5 @@
 <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">科技交流</a>
       <button
@@ -34,10 +34,6 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#" onclick="courseIndex()">课程首页</a>
               <a class="dropdown-item" href="#" onclick="personalStudy()">个人学习</a>
-              <!--
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              -->
             </div>
           </li>
           <li class="nav-item"><a class="nav-link" href="#">问答论坛</a></li>
@@ -46,8 +42,8 @@
           <input
             class="form-control mr-sm-2"
             type="search"
-            placeholder="Search"
-            aria-label="Search"
+            placeholder="搜索内容"
+            aria-label="搜索内容"
           />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
             搜索
@@ -62,6 +58,6 @@
     $("#mainDiv").load("/userSystem/learningCommunity/index.html");
   }
   function personalStudy(){
-    $('#mainDiv').load('/userSystem/learningCommunity/uploadVideo.html');
+    $("#mainDiv").load('/userSystem/learningCommunity/personalCollect.html');
   }
 </script>
