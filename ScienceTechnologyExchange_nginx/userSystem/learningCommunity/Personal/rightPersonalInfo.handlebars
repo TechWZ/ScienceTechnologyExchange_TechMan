@@ -1,0 +1,53 @@
+<div class="text-center mt-5">
+    <img src="{{userInfo.avatar}}" alt="头像" class="rounded mt-1" style="width:30%;height:21%">
+    <h5 class="mt-1">{{userInfo.nickname}}</h5>
+    <span class="badge badge-pill badge-info" style="font-size:90%;">{{userInfo.level}}级</span><br/>
+    <span class="badge badge-pill badge-info" style="font-size:90%">{{userInfo.integral}}积分</span>
+
+    <div class="row justify-content-center" style="margin-top:15%;">
+        <div class="col-7">
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" id="personalCollectionBtn">
+                    个人收藏
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" id="personalVideoBtn">个人视频</button>
+                <button type="button" class="list-group-item list-group-item-action" id="releaseVideoBtn">发布视频</button>
+                <button type="button" class="list-group-item list-group-item-action" id="waitOnlineVideoBtn">待上线视频</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //清除四个导航按钮的active状态
+    function clearButtonActive(){
+        $("#personalCollectionBtn,#personalVideoBtn,#releaseVideoBtn,#waitOnlineVideoBtn").removeClass("active");
+    }
+
+    //个人收藏按钮
+    $("#personalCollectionBtn").click(function(){
+        clearButtonActive();
+        $("#personalCollectionBtn").addClass("active");
+    });
+
+    //个人视频按钮
+    $("#personalVideoBtn").click(function(){
+        clearButtonActive();
+        $("#personalVideoBtn").addClass("active");
+    });
+
+    //发布视频按钮
+    $("#releaseVideoBtn").click(function(){
+        clearButtonActive();
+        $("#releaseVideoBtn").addClass("active");
+        $("#personalMainDiv").load('/UserSystem/LearningCommunity/Personal/uploadVideo.html');
+        console.log("123456789")
+    });
+
+    //待上线视频按钮
+    $("#waitOnlineVideoBtn").click(function(){
+        clearButtonActive();
+        $("#waitOnlineVideoBtn").addClass("active");
+    });
+</script>
+
+{{!-- handlebars ./UserSystem/LearningCommunity/Personal/rightPersonalInfo.handlebars -f ./handlebarsTemplateFile/compiledFile/userSystem/rightPersonalInfo.hbs.js --}}

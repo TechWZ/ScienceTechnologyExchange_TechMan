@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row justify-content-around">
+    <div class="col-11 mt-5 offset-1">
+      <form>
+        <div class="form-group row">
+          <label for="videoTitle" class="col-md-3 col-form-label">视频标题</label>
+          <input type="text" class="form-control col-md-5" id="videoTitle" />
+        </div>
+        <div class="form-group row mt-4">
+          <label for="levelOne levelTwo" class="col-md-3 col-form-label">类型</label>
+          <select class="form-control col-md-3" id="levelOne">
+            <option>请选择一级分类</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group row mt-4">
+          <select class="form-control col-md-3 offset-md-3" id="levelTwo">
+            <option>请选择二级分类</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group row mt-4">
+          <label for="levelOne levelTwo" class="col-md-3 col-form-label">所属栏目</label>
+          <select class="form-control col-md-3" id="levelOne">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <button type="button" class="btn btn-outline-primary offset-1">
+            创建栏目
+          </button>
+        </div>
+        <div class="form-group row mt-4">
+          <label for="formControlFile1" class="col-md-3 col-form-label">上传视频</label>
+          <input type="file" class="form-control-file col-md-5" id="videoFile" style="padding-left:0%" />
+        </div>
+        <div class="form-group row mt-4">
+          <label for="approvalOpinion" class="col-md-3 col-form-label">面向审批人备注</label>
+          <textarea class="form-control col-md-5" rows="5" id="approvalOpinion"></textarea>
+        </div>
+
+        <button id="submitButton" type="button" class="btn btn-primary offset-md-3 mt-5">
+          确认发布
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+
+    $("#submitButton").click(function () {
+      var parameterData = new FormData();
+      parameterData.append(
+        "videoFile",
+        $("#videoFile").files[0]
+      );
+      $.ajax({
+        type: "post",
+        url: "127.0.0.1:8080/STE/uploadVideo",
+        processData: false, //不处理发送的数据
+        contentType: false, //不设置Content-Type请求头
+        data: parameterData,
+        success: function (data) {
+          alert(data);
+        },
+        error: function (data) {
+          alert(data);
+        }
+      });
+    });
+    
+  });
+</script>
