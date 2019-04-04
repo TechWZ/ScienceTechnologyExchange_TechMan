@@ -1,0 +1,35 @@
+<div class="col-2" style="background-color:#ffffff">
+    <div id="accordion">
+        <!-- 左侧导航栏部分 -->
+    </div>
+</div>
+<div class="col-10">
+    <div class="row" id="breadcrumb-content">
+        <!-- breadcrumb导航 -->
+    </div>
+    <div class="tab-content" id="v-pills-tabContent">
+        <!-- 主要操作部分 -->
+    </div>
+</div>
+<script>
+    $(function () {
+        $.ajax({
+            type: "get",
+            url: "http://127.0.0.1:8080/STE/getUserCategory",
+            success: function (result) {
+                let userCategoryData = new Object;
+                userCategoryData.userCategoryData = result;
+                $.getScript(
+                    "/handlebarsTemplateFile/compiledFile/userSystem/Forum/leftNav_forum.hbs.js"
+                ).then(() => {
+                    let dataHtml = Handlebars.templates.leftNav_forum(userCategoryData);
+                    $("#accordion").html(dataHtml);
+                    showForumCard(result[0].uCLTwo[0].uCategoryId);
+                    console.log("123");
+                });
+            }
+        });
+
+        $("#breadcrumb-content").load("/userSystem/learningCommunity/breadcrumb.html");
+    });
+</script>

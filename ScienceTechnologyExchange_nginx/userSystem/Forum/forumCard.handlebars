@@ -1,0 +1,43 @@
+<div class="row">
+    {{#if forumList}}
+    {{#each forumList}}
+    <div class="col-4 mb-2">
+        <a target="_blank"
+            href="http://127.0.0.1:8082/UserSystem/LearningCommunity/programVideo.html?programId={{programId}}"
+            style="text-decoration:none; color:#000000;">
+            <div class="card">
+                <div class="card-body" style="padding-bottom:1rem;margin-left:1rem;margin-right:1rem;">
+                    <div class="media">
+                        <img class="mr-3" src="/Images/forum_JavaScript.jpeg" alt="Generic placeholder image">
+                        <div class="media-body">
+                            <h5 style="margin-bottom:1%;">{{name}}</h5>
+                            <p data-toggle="tooltip" data-placement="top" title="{{introduction}}"
+                                style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow:hidden; margin-bottom:2%;"
+                                class="text-muted">{{introduction}}</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p style="margin-bottom:1%;"><i class="fa fa-users"></i>&nbsp; <span
+                                            class="text-muted">271</span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p style="margin-bottom:1%;"><i class="fa fa-comments-o"></i>&nbsp; <span
+                                            class="text-muted">54</span></p>
+                                </div>
+                            </div>
+                            <span class="badge badge-warning">程序设计</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {{/ each}}
+    {{/ if}}
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
+
+{{!-- handlebars ./UserSystem/Forum/forumCard.handlebars -f ./handlebarsTemplateFile/compiledFile/userSystem/Forum/forumCard.hbs.js --}}

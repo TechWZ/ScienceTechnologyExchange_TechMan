@@ -2,32 +2,57 @@
     {{#if courseProgramArray}}
     {{#each courseProgramArray}}
     <div class="col-3 mb-2">
-        <div class="card">
-            {{!-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
-            <div class="card-body">
-                <div class="row">
-                    <h5 class="card-title">{{programName}}</h5>
+        <a target="_blank"
+            href="http://127.0.0.1:8082/UserSystem/LearningCommunity/programVideo.html?programId={{programId}}"
+            style="text-decoration:none; color:#000000;">
+            <div class="card">
+                <div class="card-body" style="padding-bottom:1rem;margin-left:1rem;margin-right:1rem;">
+                    <div class="row">
+                        <div class="col">
+                            <span class="badge badge-warning">官方课程</span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <h5 class="card-title" data-toggle="tooltip" data-placement="top" title="{{programName}}" style="overflow:hidden;text-overflow:ellipsis;white-space: nowrap;">
+                                {{programName}}</h5>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <p class="text-muted">35课时&nbsp;&nbsp;|&nbsp;&nbsp;更新时间：2019.03.22 21:15</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-muted">讲师：</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <img class="rounded-circle" src="/Images/qukun.png" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <p class="text-muted">曲坤</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <p class="card-text">35课时</p>
-                    </div>
-                    <div class="col-6 text-right">
-                        <p class="card-text">考神</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <a href="#" class="btn btn-outline-primary">进入学习</a>
-                    </div>
-                    <div class="col-6 text-right">
-                        <button type="button" class="btn btn-outline-primary">收藏</button>
-                    </div>
-                </div>
-
             </div>
-        </div>
+        </a>
     </div>
     {{/ each}}
     {{/ if}}
 </div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
+
+{{!-- handlebars ./UserSystem/LearningCommunity/courseCard.handlebars -f ./handlebarsTemplateFile/compiledFile/userSystem/courseCard.hbs.js --}}

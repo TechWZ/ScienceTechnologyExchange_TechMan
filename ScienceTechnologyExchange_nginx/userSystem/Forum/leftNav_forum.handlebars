@@ -1,0 +1,63 @@
+{{#each userCategoryData}}
+<div class="card">
+    <div class="card-header" id="heading{{@index}}">
+        <h5 class="mb-0">
+            {{#if @first}}
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true"
+                aria-controls="collapse{{@index}}" style="text-decoration:none">
+                {{uLevelOneName}}
+            </button>
+            {{else}}
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{@index}}"
+                aria-expanded="false" aria-controls="collapse{{@index}}" style="text-decoration:none">
+                {{uLevelOneName}}
+            </button>
+            {{/ if}}
+        </h5>
+    </div>
+
+    <div id="collapse{{@index}}" class="collapse {{#if @first}} show {{/ if}}" aria-labelledby="heading{{@index}}"
+        data-parent="#accordion">
+        <div class="card-body">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                {{#each uCLTwo}}
+                {{#if @first}}
+                <a class="nav-link active" id="{{uCategoryId}}" data-toggle="pill" href="#" role="tab"
+                    aria-selected="true" onclick="showForumCard('{{uCategoryId}}')">{{uLevelTwoName}}</a>
+                {{else}}
+                <a class="nav-link" id="{{uCategoryId}}" data-toggle="pill" href="#" role="tab" aria-selected="false"
+                    onclick="showForumCard('{{uCategoryId}}')">{{uLevelTwoName}}</a>
+                {{/ if}}
+                {{/ each}}
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+<script>
+    function showForumCard(categoryId) {
+        let data = new Object();
+        data.categoryId = categoryId;
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            url: "http://127.0.0.1:8080/STE/getForumListByCategoryId",
+            success: function (result) {
+                $.getScript('/handlebarsTemplateFile/compiledFile/userSystem/Forum/forumCard.hbs.js').then(() => {
+                    let forumCardData = new Object;
+                    forumCardData.forumList = result;
+                    let dataHtml = Handlebars.templates.forumCard(forumCardData);
+                    $("#v-pills-tabContent").html(dataHtml);
+                });
+            }
+        });
+        console.log(data);
+    }
+</script>
+
+{{!-- handlebars ./UserSystem/Forum/leftNav_forum.handlebars -f ./handlebarsTemplateFile/compiledFile/userSystem/Forum/leftNav_forum.hbs.js --}}

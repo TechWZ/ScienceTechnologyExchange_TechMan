@@ -1,0 +1,25 @@
+<div class="list-group" style="margin-top:4.5rem;">
+    {{#each videoList}}
+    <button type="button" class="list-group-item list-group-item-action" id="{{@index}}Btn" name="{{path}}" onclick="switching('{{@index}}')" style="outline:none;">
+        {{videoTitle}}
+    </button>
+    {{/ each}}
+</div>
+<script>
+    $(function(){
+        let firstVideoBtn = $("button.list-group-item:first");
+        firstVideoBtn.addClass("active");
+        $('#videoPlayer').attr('src',firstVideoBtn.attr('name'));
+    });
+
+    function switching(index){
+        let activeVideoBtn = $('#'+index+'Btn');
+        $("button.list-group-item").removeClass("active");
+        activeVideoBtn.addClass("active");
+
+        let videoPlayer = $('#videoPlayer');
+        videoPlayer.attr('src',activeVideoBtn.attr('name'));
+    }
+</script>
+
+{{!-- handlebars ./UserSystem/LearningCommunity/programVideoList.handlebars -f ./handlebarsTemplateFile/compiledFile/userSystem/programVideoList.hbs.js --}}

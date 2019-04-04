@@ -36,26 +36,5 @@
         });
       }
     });
-
-    $("#submitButton").click(function () {
-      var parameterData = new FormData();
-      parameterData.append(
-        "videoFile",
-        $("#videoFile").files[0]
-      );
-      $.ajax({
-        type: "post",
-        url: "127.0.0.1:8080/STE/uploadVideo",
-        processData: false, //不处理发送的数据
-        contentType: false, //不设置Content-Type请求头
-        data: parameterData,
-        success: function (data) {
-          alert(data);
-        },
-        error: function (data) {
-          alert(data);
-        }
-      });
-    });
   });
 </script>
