@@ -1,0 +1,21 @@
+{{#each dynamicList}}
+<div class="row rounded mt-2" style="background-color:#f8f9fa;padding-top:2%;padding-bottom:2%; ">
+    <div class="col">
+        <div class="row">
+            <div class="col-1 text-center">
+                <img src="{{createUserInfo.avatar}}" alt="头像" class="rounded-circle mt-1" style="width:3rem;height:3rem" />
+            </div>
+            <div class="col-11">
+                <h6>{{createUserInfo.nickname}}<span class="text-muted badge badge-warning" style="margin-left:1rem;">Lv.{{createUserInfo.level}}</span></h6>
+                <span class="text-muted">{{createTimeFormat}}</span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-11 offset-1">{{{content}}}</div>
+        </div>
+    </div>
+</div>
+{{/ each}}
+
+{{!-- handlebars ./UserSystem/Dynamic/dynamicList.handlebars -f ./HandlebarsCompiledFile/UserSystem/Dynamic/dynamicList.hbs.js --}}

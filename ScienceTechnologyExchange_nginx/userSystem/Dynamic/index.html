@@ -1,0 +1,84 @@
+<link href="/Summernote/summernote-bs4.css" rel="stylesheet">
+<script src="/Summernote/summernote-bs4.js"></script>
+<script src="/Summernote/lang/summernote-zh-CN.js"></script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8 mt-3 offset-1" style="padding-right:5rem;">
+      <div class="row">
+        <div class="col">
+          <div id="summernote"></div>
+          <div class="row mt-1">
+            <div class="col-6">
+              <button onclick="releaseDynamic()" type="button" class="btn btn-success">发布</button>
+            </div>
+            <div class="col-6 text-right">
+              <button onclick="uploadImage()" type="button" class="btn btn-success"><i class="fa fa-image"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" id="dynamicActiveDiv">
+          <!-- 科技生活活动版块 -->
+        </div>
+      </div>
+    </div>
+    <div class="col-2" id="personal-col">
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $('#summernote').summernote({
+      placeholder: 'Hello bootstrap 4',
+      height: 150,
+      lang: 'zh-CN',
+      lineHeight: 5,
+      blockquoteBreakingLevel: 0,
+      disableDragAndDrop: true,
+      toolbar: [
+        ['link'],
+        ['fullscreen'],
+        ['help']
+      ]
+    });
+    $.ajax({
+      xhrFields: {
+        withCredentials: true
+      },
+      type: "get",
+      url: "http://127.0.0.1:8080/STE/getUserInfo",
+      success: function (result) {
+        $.getScript('/HandlebarsCompiledFile/UserSystem/Dynamic/personalColumn_dynamic.hbs.js')
+          .then(() => {
+            let userInfoData = new Object;
+            userInfoData.userInfo = result;
+            let dataHtml = Handlebars.templates.personalColumn_dynamic(userInfoData);
+            $("#personal-col").html(dataHtml);
+          });
+      }
+    });
+  });
+
+  function releaseDynamic() {
+    let dynamicData = new Object();
+    dynamicData.content = $('#summernote').summernote('code');
+    $.ajax({
+      xhrFields: {
+        withCredentials: true
+      },
+      type: "post",
+      contentType: "application/json",
+      data: JSON.stringify(dynamicData),
+      url: "http://127.0.0.1:8080/STE/releaseDynamic",
+      success: function (result) {
+        if (result == "01") {
+          alert("动态发布成功");
+        } else {
+          alert("动态发布失败");
+        }
+      }
+    });
+  }
+</script>

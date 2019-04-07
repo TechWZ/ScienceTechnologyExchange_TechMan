@@ -15,7 +15,7 @@
       type: "get",
       url: "http://127.0.0.1:8080/STE/getPersonalCollectProgram",
       success: function (result) {
-        $.getScript('/handlebarsTemplateFile/compiledFile/userSystem/personalCollectCourseCard.hbs.js').then(() => {
+        $.getScript('/HandlebarsCompiledFile/UserSystem/personalCollectCourseCard.hbs.js').then(() => {
           let data = new Object;
           data.personalProgramArray = result;
           let dataHtml = Handlebars.templates.personalCollectCourseCard(data);
@@ -28,7 +28,7 @@
       type: "get",
       url: "http://127.0.0.1:8080/STE/getUserInfo",
       success: function (result) {
-        $.getScript('/handlebarsTemplateFile/compiledFile/userSystem/rightPersonalInfo.hbs.js').then(() => {
+        $.getScript('/HandlebarsCompiledFile/UserSystem/rightPersonalInfo.hbs.js').then(() => {
           let userInfoData = new Object;
           userInfoData.userInfo = result;
           let dataHtml = Handlebars.templates.rightPersonalInfo(userInfoData);

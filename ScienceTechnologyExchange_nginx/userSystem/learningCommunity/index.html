@@ -20,7 +20,7 @@
                 let userCategoryData = new Object;
                 userCategoryData.userCategoryData = result;
                 $.getScript(
-                    "/handlebarsTemplateFile/compiledFile/userSystem/leftNav_userCategory.hbs.js"
+                    "/HandlebarsCompiledFile/UserSystem/leftNav_userCategory.hbs.js"
                 ).then(() => {
                     let dataHtml = Handlebars.templates.leftNav_userCategory(userCategoryData);
                     $("#accordion").html(dataHtml);

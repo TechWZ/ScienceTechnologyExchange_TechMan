@@ -1,0 +1,67 @@
+<div class="row rounded mt-3" style="background-color:#f8f9fa; padding-top:1rem; padding-bottom:1rem;">
+    <div class="col-4">
+        <img src="{{userInfo.avatar}}" alt="头像" class="rounded-circle" style="width:5rem;height:5rem;" />
+    </div>
+    <div class="col-8 text-center">
+        <h5 class="mt-1">{{userInfo.nickname}}</h5>
+        <span class="badge badge-pill badge-warning" style="font-size:90%;">{{userInfo.level}}级</span><br />
+        <span class="badge badge-pill badge-info" style="font-size:90%">{{userInfo.integral}}积分</span>
+    </div>
+</div>
+<div class="row" style="margin-top:5%;">
+    <div class="col" style="padding-left:0%;padding-right:0%;">
+        <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active" id="activeDynamicBtn"
+                style="outline:none" onclick="loadActiveDynamic()">
+                热门
+            </button>
+            <button type="button" class="list-group-item list-group-item-action" id="friendsCircleBtn"
+                style="outline:none">好友圈</button>
+            <button type="button" class="list-group-item list-group-item-action" id="discoverBtn"
+                style="outline:none">发现</button>
+            <button type="button" class="list-group-item list-group-item-action" id="personalDynamicBtn"
+                style="outline:none">个人动态</button>
+        </div>
+    </div>
+</div>
+<script>
+    //清除四个导航按钮的active状态
+    function clearButtonActive() {
+        $("#activeDynamicBtn,#friendsCircleBtn,#discoverBtn,#personalDynamicBtn").removeClass("active");
+    }
+
+    //热门动态按钮
+    function loadActiveDynamic() {
+        clearButtonActive();
+        $("#activeDynamicBtn").addClass("active");
+        $.ajax({
+            xhrFields: { withCredentials: true },
+            type: "get",
+            url: "http://127.0.0.1:8080/STE/getActiveDynamic",
+            success: function (result) {
+                $.getScript('/HandlebarsCompiledFile/UserSystem/Dynamic/dynamicList.hbs.js').then(() => {
+                    let data = new Object;
+                    data.dynamicList = result;
+                    let dataHtml = Handlebars.templates.dynamicList(data);
+                    $("#dynamicActiveDiv").html(dataHtml);
+                });
+            }
+        });
+    }
+
+    loadActiveDynamic();
+
+    //个人栏目按钮
+    $("#personalVideoBtn").click(function () {
+        clearButtonActive();
+        $("#personalVideoBtn").addClass("active");
+    });
+
+    //待上线视频按钮
+    $("#waitOnlineVideoBtn").click(function () {
+        clearButtonActive();
+        $("#waitOnlineVideoBtn").addClass("active");
+    });
+</script>
+
+{{!-- handlebars ./UserSystem/Dynamic/personalColumn_dynamic.handlebars -f ./HandlebarsCompiledFile/UserSystem/Dynamic/personalColumn_dynamic.hbs.js --}}

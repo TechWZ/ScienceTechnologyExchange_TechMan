@@ -48,7 +48,7 @@
             data: JSON.stringify(data),
             url: "http://127.0.0.1:8080/STE/getForumListByCategoryId",
             success: function (result) {
-                $.getScript('/handlebarsTemplateFile/compiledFile/userSystem/Forum/forumCard.hbs.js').then(() => {
+                $.getScript('/HandlebarsCompiledFile/UserSystem/Forum/forumCard.hbs.js').then(() => {
                     let forumCardData = new Object;
                     forumCardData.forumList = result;
                     let dataHtml = Handlebars.templates.forumCard(forumCardData);

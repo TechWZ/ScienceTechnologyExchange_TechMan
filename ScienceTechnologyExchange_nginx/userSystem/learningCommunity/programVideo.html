@@ -61,7 +61,7 @@
         if (result != "00") {
           $('h5#videoTitle').html(result[0].videoTitle);
           $('p#uploadTime').append(result[0].uploadTime);
-          $.getScript('/handlebarsTemplateFile/compiledFile/userSystem/programVideoList.hbs.js').then(() => {
+          $.getScript('/HandlebarsCompiledFile/UserSystem/programVideoList.hbs.js').then(() => {
             let data = new Object;
             data.videoList = result;
             let dataHtml = Handlebars.templates.programVideoList(data);
