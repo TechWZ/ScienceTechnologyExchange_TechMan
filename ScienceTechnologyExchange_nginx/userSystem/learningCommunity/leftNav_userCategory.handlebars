@@ -46,7 +46,7 @@
             },
             url: "http://127.0.0.1:8080/STE/getCourseProgramByCategoryId",
             success: function (result) {
-                $.getScript('/HandlebarsCompiledFile/UserSystem/courseCard.hbs.js').then(() => {
+                $.getScript('/HandlebarsCompiledFile/UserSystem/LearningCommunity/courseCard.hbs.js').then(() => {
                     let courseProgramData = new Object;
                     courseProgramData.courseProgramArray = result;
                     let dataHtml = Handlebars.templates.courseCard(courseProgramData);
@@ -56,3 +56,5 @@
         });
     }
 </script>
+
+{{!-- handlebars ./UserSystem/LearningCommunity/leftNav_userCategory.handlebars -f ./HandlebarsCompiledFile/UserSystem/LearningCommunity/leftNav_userCategory.hbs.js --}}

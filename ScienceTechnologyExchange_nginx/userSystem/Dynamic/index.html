@@ -1,6 +1,3 @@
-<link href="/Summernote/summernote-bs4.css" rel="stylesheet">
-<script src="/Summernote/summernote-bs4.js"></script>
-<script src="/Summernote/lang/summernote-zh-CN.js"></script>
 <div class="container-fluid">
   <div class="row">
     <div class="col-8 mt-3 offset-1" style="padding-right:5rem;">
@@ -9,14 +6,26 @@
           <div id="summernote"></div>
           <div class="row mt-1">
             <div class="col-6">
-              <button onclick="releaseDynamic()" type="button" class="btn btn-success">发布</button>
+              <label class="btn btn-success" for="dynamicImageInput" id="uploadImageLabel"><i
+                  class="fa fa-image"></i></label>
+              <input type="file" class="form-control-file" id="dynamicImageInput" onchange="uploadImage()"
+                style="display:none;">
+
             </div>
             <div class="col-6 text-right">
-              <button onclick="uploadImage()" type="button" class="btn btn-success"><i class="fa fa-image"></i></button>
+              <button onclick="releaseDynamic()" type="button" class="btn btn-success">发布</button>
             </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <div id="imagePreview">
+            <!-- 图片预览部分 -->
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col" id="dynamicActiveDiv">
           <!-- 科技生活活动版块 -->
@@ -29,13 +38,15 @@
 </div>
 
 <script>
+  var imageFileArray = new Array();//定义图片文件数组
+
   $(function () {
     $('#summernote').summernote({
-      placeholder: 'Hello bootstrap 4',
+      placeholder: '要不要跟大家分享一下你的生活？？',
       height: 150,
       lang: 'zh-CN',
       lineHeight: 5,
-      blockquoteBreakingLevel: 0,
+      // blockquoteBreakingLevel: 0,
       disableDragAndDrop: true,
       toolbar: [
         ['link'],
@@ -62,23 +73,61 @@
   });
 
   function releaseDynamic() {
-    let dynamicData = new Object();
-    dynamicData.content = $('#summernote').summernote('code');
+    let dynamicData = new FormData();
+    dynamicData.append("content", $('#summernote').summernote('code'));
+    imageFileArray.forEach(function(value,index){
+      dynamicData.append("imageFileArray",value);
+    });
     $.ajax({
       xhrFields: {
         withCredentials: true
       },
       type: "post",
-      contentType: "application/json",
-      data: JSON.stringify(dynamicData),
+      processData: false, //不处理发送的数据
+      contentType: false, //不设置Content-Type请求头
+      data: dynamicData,
       url: "http://127.0.0.1:8080/STE/releaseDynamic",
       success: function (result) {
         if (result == "01") {
           alert("动态发布成功");
+          dynamicIndex();
         } else {
           alert("动态发布失败");
         }
       }
     });
+  }
+
+  function uploadImage() {
+    let imageFile = $('#dynamicImageInput')[0].files[0];
+    console.log($('#dynamicImageInput')[0].files);
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(imageFile);
+
+    fileReader.onload = function (e) {
+      let imageHtml = "<img src='" + this.result + "' width='10%' />"
+      $('#imagePreview').append(imageHtml);
+    };
+
+    imageFileArray.push(imageFile);
+
+    let imageNum = imageFileArray.length;
+    if (imageNum == 1) {
+      $('#dynamicImageInput').after(
+        "<button type='button' id='deleteImageBtn' onclick='deleteImage()' class='btn btn-danger' style='vertical-align:top'><i class='fa fa-trash'></i></button>"
+      );
+    }
+    if (imageNum == 9) {
+      $('#uploadImageLabel').replaceWith(
+        "<button class='btn btn-success' disabled><i class='fa fa-image'></i></button>");
+    }
+
+    $('#dynamicImageInput').val("");//每次选择完文件都将input file标签置空
+  }
+
+  function deleteImage() {
+    $('#imagePreview').html('');
+    imageFileArray.length = 0;
+    $('#deleteImageBtn').remove();
   }
 </script>

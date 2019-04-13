@@ -2,7 +2,7 @@
     function manageHandleView(mCategoryId_levelTwo) {
         switch (mCategoryId_levelTwo) {
             case "381cfdd1-3c14-413d-b83a-df2cf8ad56e3"://管理系统分类
-                $.getScript('/handlebarsTemplateFile/compiledFile/managementCategory.hbs.js').then(() => {
+                $.getScript('/HandlebarsCompiledFile/ManagementSystem/ManagementCategory/managementCategory.hbs.js').then(() => {
                     let dataHtml = Handlebars.templates.managementCategory(managementCategoryData);
                     $("#v-pills-tabContent").html(dataHtml);
                 });
@@ -15,12 +15,15 @@
                     success: function (result) {
                         let userCategoryData = new Object;
                         userCategoryData.userCategoryData = result;
-                        $.getScript('/handlebarsTemplateFile/compiledFile/userCategory.hbs.js').then(() => {
+                        $.getScript('/HandlebarsCompiledFile/ManagementSystem/UserCategory/userCategory.hbs.js').then(() => {
                             let dataHtml = Handlebars.templates.userCategory(userCategoryData);
                             $("#v-pills-tabContent").html(dataHtml);
                         });
                     }
                 });
+                break;
+            case "7caf0df8-5aee-4239-9dee-9efc628d0b4a"://添加新闻资讯
+                $("#v-pills-tabContent").load('/ManagementSystem/News/addNews.html');
                 break;
         }
     }
@@ -62,3 +65,5 @@
     </div>
 </div>
 {{/each}}
+
+{{!-- handlebars ./ManagementSystem/ManagementIndex/leftNav.handlebars -f ./HandlebarsCompiledFile/ManagementSystem/ManagementIndex/leftNav.hbs.js --}}

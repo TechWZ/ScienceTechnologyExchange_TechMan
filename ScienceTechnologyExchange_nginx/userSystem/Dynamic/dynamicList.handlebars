@@ -3,16 +3,32 @@
     <div class="col">
         <div class="row">
             <div class="col-1 text-center">
-                <img src="{{createUserInfo.avatar}}" alt="头像" class="rounded-circle mt-1" style="width:3rem;height:3rem" />
+                <img src="{{createUserInfo.avatar}}" alt="头像" class="rounded-circle mt-1"
+                    style="width:3rem;height:3rem" />
             </div>
             <div class="col-11">
-                <h6>{{createUserInfo.nickname}}<span class="text-muted badge badge-warning" style="margin-left:1rem;">Lv.{{createUserInfo.level}}</span></h6>
-                <span class="text-muted">{{createTimeFormat}}</span>
+                <div class="row">
+                    <div class="col">
+                        <h6>{{createUserInfo.nickname}}<span class="text-muted badge badge-warning"
+                                style="margin-left:1rem;">Lv.{{createUserInfo.level}}</span></h6>
+                        <span class="text-muted">{{createTimeFormat}}</span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">{{{content}}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            {{#each dynamicImages}}
+                            <div class="col-4 text-center">
+                                <img src="{{image}}" alt="" width="130rem" height="130rem">
+                            </div>
+                            {{/ each}}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="row mt-3">
-            <div class="col-11 offset-1">{{{content}}}</div>
         </div>
     </div>
 </div>

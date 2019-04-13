@@ -61,7 +61,7 @@
         $("#" + divId).remove();
     }
 
-    $.getScript("../../handlebarsTemplateFile/compiledFile/mSCModal.hbs.js");//引入modal
+    $.getScript("/HandlebarsCompiledFile/ManagementSystem/ManagementCategory/mSCModal.hbs.js");//引入modal
     function editManagementSystemCategory(mCategoryId) {
         $.ajax({
             type: "get",
@@ -85,3 +85,5 @@
     }
 
 </script>
+
+{{!-- handlebars ./ManagementSystem/ManagementCategory/managementCategory.handlebars -f ./HandlebarsCompiledFile/ManagementSystem/ManagementCategory/managementCategory.hbs.js --}}

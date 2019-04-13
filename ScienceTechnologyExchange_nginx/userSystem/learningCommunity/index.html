@@ -20,7 +20,7 @@
                 let userCategoryData = new Object;
                 userCategoryData.userCategoryData = result;
                 $.getScript(
-                    "/HandlebarsCompiledFile/UserSystem/leftNav_userCategory.hbs.js"
+                    "/HandlebarsCompiledFile/UserSystem/LearningCommunity/leftNav_userCategory.hbs.js"
                 ).then(() => {
                     let dataHtml = Handlebars.templates.leftNav_userCategory(userCategoryData);
                     $("#accordion").html(dataHtml);
@@ -29,6 +29,6 @@
             }
         });
 
-        $("#breadcrumb-content").load("/userSystem/learningCommunity/breadcrumb.html");
+        $("#breadcrumb-content").load("/UserSystem/breadcrumb.html");
     });
 </script>

@@ -1,16 +1,16 @@
 <div class="row">
-    {{#if forumList}}
-    {{#each forumList}}
-    <div class="col-4 mb-2">
+    {{#if newsArray}}
+    {{#each newsArray}}
+    <div class="col-6 mb-2">
         <a target="_blank"
             href="http://127.0.0.1:8082/UserSystem/LearningCommunity/programVideo.html?programId={{programId}}"
             style="text-decoration:none; color:#000000;">
             <div class="card">
                 <div class="card-body" style="padding-bottom:1rem;margin-left:1rem;margin-right:1rem;">
                     <div class="media">
-                        <img class="mr-3" src="/Images/forum_JavaScript.jpeg" alt="Generic placeholder image">
+                        <img class="mr-3" src="{{image}}" width="200rem" height="150rem">
                         <div class="media-body">
-                            <h5 style="margin-bottom:1%;">{{name}}</h5>
+                            <h5 style="margin-bottom:1%;">{{title}}</h5>
                             <p data-toggle="tooltip" data-placement="top" title="{{introduction}}"
                                 style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow:hidden; margin-bottom:2%;"
                                 class="text-muted">{{introduction}}</p>
@@ -24,7 +24,6 @@
                                             class="text-muted">54</span></p>
                                 </div>
                             </div>
-                            <span class="badge badge-warning">程序设计</span>
                         </div>
                     </div>
                 </div>
@@ -40,4 +39,4 @@
     })
 </script>
 
-{{!-- handlebars ./UserSystem/Forum/forumCard.handlebars -f ./HandlebarsCompiledFile/UserSystem/Forum/forumCard.hbs.js --}}
+{{!-- handlebars ./UserSystem/Home/newsCard.handlebars -f ./HandlebarsCompiledFile/UserSystem/Home/newsCard.hbs.js --}}

@@ -25,11 +25,10 @@
                     let dataHtml = Handlebars.templates.leftNav_forum(userCategoryData);
                     $("#accordion").html(dataHtml);
                     showForumCard(result[0].uCLTwo[0].uCategoryId);
-                    console.log("123");
                 });
             }
         });
 
-        $("#breadcrumb-content").load("/userSystem/learningCommunity/breadcrumb.html");
+        $("#breadcrumb-content").load("/UserSystem/breadcrumb.html");
     });
 </script>

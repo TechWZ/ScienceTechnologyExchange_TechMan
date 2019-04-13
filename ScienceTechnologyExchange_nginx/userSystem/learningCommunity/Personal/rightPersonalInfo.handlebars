@@ -33,7 +33,7 @@
             type: "get",
             url: "http://127.0.0.1:8080/STE/getPersonalCollectProgram",
             success: function (result) {
-                $.getScript('/HandlebarsCompiledFile/UserSystem/personalCollectCourseCard.hbs.js').then(() => {
+                $.getScript('/HandlebarsCompiledFile/UserSystem/LearningCommunity/personalCollectCourseCard.hbs.js').then(() => {
                     let data = new Object;
                     data.personalProgramArray = result;
                     let dataHtml = Handlebars.templates.personalCollectCourseCard(data);
@@ -58,7 +58,7 @@
             type: "get",
             url: "http://127.0.0.1:8080/STE/getAllProgramByCurrentUser",
             success: function (result) {
-                $.getScript('/HandlebarsCompiledFile/UserSystem/uploadVideo.hbs.js').then(() => {
+                $.getScript('/HandlebarsCompiledFile/UserSystem/LearningCommunity/uploadVideo.hbs.js').then(() => {
                     let data = new Object;
                     data.programList = result;
                     let dataHtml = Handlebars.templates.uploadVideo(data);
@@ -75,4 +75,4 @@
     });
 </script>
 
-{{!-- handlebars ./UserSystem/LearningCommunity/Personal/rightPersonalInfo.handlebars -f ./handlebarsTemplateFile/compiledFile/userSystem/rightPersonalInfo.hbs.js --}}
+{{!-- handlebars ./UserSystem/LearningCommunity/Personal/rightPersonalInfo.handlebars -f ./HandlebarsCompiledFile/UserSystem/LearningCommunity/rightPersonalInfo.hbs.js --}}

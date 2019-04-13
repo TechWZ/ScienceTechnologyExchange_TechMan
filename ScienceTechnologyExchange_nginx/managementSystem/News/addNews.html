@@ -1,0 +1,68 @@
+  <div class="row justify-content-around">
+    <div class="col-11 mt-5 offset-1">
+      <form>
+        <div class="form-group row">
+          <label for="newsTitle" class="col-2 col-form-label">新闻资讯标题</label>
+          <input type="text" class="form-control col-4" id="newsTitle" />
+        </div>
+        <div class="form-group row mt-4">
+          <label for="newsImage" class="col-2 col-form-label">新闻资讯宣传图</label>
+          <input type="file" class="form-control-file col-4" id="newsImage" style="padding-left:0%" />
+        </div>
+        <div class="form-group row mt-4">
+          <label for="newsIntroduction" class="col-2 col-form-label">简介</label>
+          <textarea class="form-control col-4" rows="5" id="newsIntroduction"></textarea>
+        </div>
+        <div class="form-group row mt-4">
+          <!-- <label for="newsContent" class="col-2 col-form-label">新闻资讯内容</label> -->
+          <div class="col-7">
+            <div id="newsContent"></div>
+          </div>
+        </div>
+
+        <button id="submitButton" type="button" class="btn btn-primary offset-md-3 mt-5">
+          确认发布
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      $('#newsContent').summernote({
+        placeholder: '新闻资讯内容编辑区',
+        height: 200,
+        lang: 'zh-CN',
+        lineHeight: 5,
+        // blockquoteBreakingLevel: 0,
+        disableDragAndDrop: true,
+      });
+
+      $("#submitButton").click(function () {
+        let parameterData = new FormData();
+        parameterData.append("newsTitle", $('#newsTitle').val());
+        parameterData.append("newsImage", $("#newsImage")[0].files[0]);
+        parameterData.append("newsIntroduction", $('#newsIntroduction').val());
+        parameterData.append("newsContent", $('#newsContent').summernote('code'));
+
+        $.ajax({
+          xhrFields: {
+            withCredentials: true
+          },
+          type: "post",
+          url: "http://127.0.0.1:8080/STE/releaseNews",
+          processData: false, //不处理发送的数据
+          contentType: false, //不设置Content-Type请求头
+          data: parameterData,
+          success: function (result) {
+            if(result == '01'){
+              alert("发布成功");
+            }else{
+              alert("发布失败");
+            }
+          }
+        });
+      });
+
+    });
+  </script>

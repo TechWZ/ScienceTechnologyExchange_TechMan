@@ -58,7 +58,7 @@
             },
             url: "http://127.0.0.1:8080/STE/getUserCategoryById",
             success: function (result) {
-                $.getScript("../../handlebarsTemplateFile/compiledFile/uSCModal.hbs.js").then(() => {
+                $.getScript("/HandlebarsCompiledFile/ManagementSystem/UserCategory/uSCModal.hbs.js").then(() => {
                     let dataHtml = Handlebars.templates.uSCModal(result);
                     $("#userCategoryModal").html(dataHtml);
                     $("#userCategoryModal").modal('show');
@@ -74,3 +74,5 @@
     } 
     */
 </script>
+
+{{!-- handlebars ./ManagementSystem/UserCategory/userCategory.handlebars -f ./HandlebarsCompiledFile/ManagementSystem/UserCategory/userCategory.hbs.js --}}
