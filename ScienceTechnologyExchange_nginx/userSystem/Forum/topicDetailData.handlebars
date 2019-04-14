@@ -1,0 +1,58 @@
+<div class="row rounded mt-2" style="background-color:#f8f9fa;padding-top:2%;padding-bottom:2%; margin-right:5rem">
+    <div class="col">
+        <div class="row">
+            <div class="col-2 text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{topicData.topicUserInfo.avatar}}" alt="头像" class="rounded-circle mt-1"
+                            style="width:3rem;height:3rem" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>{{topicData.topicUserInfo.nickname}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col">
+                        <h6>{{topicData.title}}</h6>
+                        <span class="text-muted">{{topicData.createTime}}</span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">{{{topicData.content}}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{#each topicData.topicCommentList}}
+<div class="row rounded mt-2" style="background-color:#f8f9fa;padding-top:2%;padding-bottom:2%; margin-right:5rem">
+    <div class="col">
+        <div class="row">
+            <div class="col-2 text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{tCUserInfo.avatar}}" alt="头像" class="rounded-circle mt-1"
+                            style="width:3rem;height:3rem" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>{{tCUserInfo.nickname}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="row mt-3">
+                    <div class="col">{{{content}}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/ each}}
+
+{{!-- handlebars ./UserSystem/Forum/topicDetailData.handlebars -f ./HandlebarsCompiledFile/UserSystem/Forum/topicDetailData.hbs.js --}}

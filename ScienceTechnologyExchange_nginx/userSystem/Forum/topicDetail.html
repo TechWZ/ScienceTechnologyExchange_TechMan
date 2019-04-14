@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>科技交流</title>
+  <link rel="stylesheet" href="/bootstrap-4.2.1-dist/css/bootstrap.min.css" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <script src="/handlebars.runtime-v4.1.1.js"></script>
+  <script type="text/javascript" src="/jQuery/jquery-3.3.1.js"></script>
+  <script src="/jQuery/jquery.cookie.js"></script>
+  <script src="/jQuery/util.js"></script>
+
+  <!-- Summernote文件 -->
+  <link href="/Summernote/summernote-bs4.css" rel="stylesheet">
+  <script src="/Summernote/summernote-bs4.js"></script>
+  <script src="/Summernote/lang/summernote-zh-CN.js"></script>
+  <script>
+    $(function () {
+      $("#navPart").load("/UserSystem/nav.html");
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <!-- Content here -->
+    <div class="row" id="navPart">
+      <!-- 导航栏部分 -->
+    </div>
+    <div class="row" id="mainDiv">
+      <div class="offset-1 col-8">
+        <!-- 话题详情部分 -->
+        <div class="row">
+          <div class="col" id="topicDetail">
+          </div>
+        </div>
+        <div class="row mt-5 align-items-center">
+          <div class="col-10" style="padding-left:0%;">
+            <textarea class="form-control" id="topicCommentContent" rows="3"></textarea>
+          </div>
+          <div class="col-2">
+            <button type="button" class="btn btn-success" id="submitComment">发表<br>回答</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-2" id="personal-col">
+      </div>
+    </div>
+  </div>
+
+  <script src="/bootstrap-4.2.1-dist/js/popper1.14.7.min.js"></script>
+  <script src="/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+</body>
+<script>
+  let topicId = GetQueryString("topicId");
+  $(function () {
+    $.ajax({
+      xhrFields: {
+        withCredentials: true
+      },
+      type: "get",
+      url: "http://127.0.0.1:8080/STE/getUserInfo",
+      success: function (result) {
+        $.getScript('/HandlebarsCompiledFile/UserSystem/Forum/personalColumn_forum.hbs.js')
+          .then(() => {
+            let userInfoData = new Object;
+            userInfoData.userInfo = result;
+            let dataHtml = Handlebars.templates.personalColumn_forum(userInfoData);
+            $("#personal-col").html(dataHtml);
+          });
+      }
+    });
+
+    $.ajax({
+      xhrFields: {
+        withCredentials: true
+      },
+      type: "get",
+      url: "http://127.0.0.1:8080/STE/getTopicDetail?topicId=" + topicId,
+      success: function (result) {
+        if (result != "00") {
+          $.getScript('/HandlebarsCompiledFile/UserSystem/Forum/topicDetailData.hbs.js').then(
+            () => {
+              let data = new Object;
+              data.topicData = result;
+              let dataHtml = Handlebars.templates.topicDetailData(data);
+              $("#topicDetail").html(dataHtml);
+            });
+        }
+      }
+    });
+
+  });
+
+  $("#submitComment").click(function () {
+
+    let parameterData = new Object();
+    parameterData.topicCommentContent = $("#topicCommentContent").val();
+    parameterData.topicId = topicId;
+
+    $.ajax({
+      xhrFields: {
+        withCredentials: true
+      },
+      contentType: "application/json",
+      type: "post",
+      url: "http://127.0.0.1:8080/STE/releaseTopicAnswer",
+      data: JSON.stringify(parameterData),
+      success: function (result) {
+        if (result == "01") {
+          alert("回答发表成功");
+          window.location.reload();
+        } else {
+          alert("回答发表失败");
+        }
+      }
+    });
+  });
+</script>
+
+</html>

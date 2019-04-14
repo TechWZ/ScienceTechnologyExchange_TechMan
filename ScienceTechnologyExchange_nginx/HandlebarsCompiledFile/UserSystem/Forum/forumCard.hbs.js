@@ -7,8 +7,8 @@ templates['forumCard'] = template({"1":function(container,depth0,helpers,partial
 },"2":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "    <div class=\"col-4 mb-2\">\n        <a target=\"_blank\"\n            href=\"http://127.0.0.1:8082/UserSystem/LearningCommunity/programVideo.html?programId="
-    + alias4(((helper = (helper = helpers.programId || (depth0 != null ? depth0.programId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"programId","hash":{},"data":data}) : helper)))
+  return "    <div class=\"col-4 mb-2\">\n        <a target=\"_blank\"\n            href=\"http://127.0.0.1:8082/UserSystem/Forum/forumDetail.html?forumId="
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\"\n            style=\"text-decoration:none; color:#000000;\">\n            <div class=\"card\">\n                <div class=\"card-body\" style=\"padding-bottom:1rem;margin-left:1rem;margin-right:1rem;\">\n                    <div class=\"media\">\n                        <img class=\"mr-3\" src=\"/Images/forum_JavaScript.jpeg\" alt=\"Generic placeholder image\">\n                        <div class=\"media-body\">\n                            <h5 style=\"margin-bottom:1%;\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "</h5>\n                            <p data-toggle=\"tooltip\" data-placement=\"top\" title=\""
